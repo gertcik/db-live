@@ -1,0 +1,40 @@
+
+services:
+    # https://hub.docker.com/_/postgres
+    gpbquiz-db:
+        restart: always
+        image: postgres:15.5
+        ports:
+            - '5433:5432' # postgresql по порту 5433 будет доступен снаружи
+#        expose:
+#            - '5432' # этот порт будет доступен только внутри docker
+        environment:
+            TZ: 'Europe/Moscow'
+            PGTZ: 'Europe/Moscow'
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: gpbquiz-db
+        volumes:
+            - ./init.sql:/docker-entrypoint-initdb.d/_init_db.sql
+            - ./env/dev/pgdata/:/var/lib/postgresql/data
+        networks:
+            - gpb.gpbquiz
+     
+    # это pgadmin, чтобы не запускать его на локали
+    # https://hub.docker.com/r/dpage/pgadmin4/tags
+    gpbquiz-pgadmin4:
+        restart: always
+        image: dpage/pgadmin4:8.8
+        ports:
+            - '8889:80'
+        environment:
+            PGADMIN_DEFAULT_EMAIL: test@test.com
+            PGADMIN_DEFAULT_PASSWORD: test@test.com
+        volumes:
+            - ./env/dev/pgadmin/:/var/lib/pgadmin
+        networks:
+            - gpb.gpbquiz     
+
+networks:
+    gpb.gpbquiz:
+
