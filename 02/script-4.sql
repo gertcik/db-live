@@ -33,11 +33,11 @@ CREATE TABLE user_4.t_users (
 insert into user_4.t_users (user_name) values ('user');
 
 -- Даём права на чтение из ВСЕХ таблиц схемы user_4, которые будут созданы
-ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO test_user_4_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO test_user_4_role; -- ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 REVOKE SELECT, INSERT, UPDATE, DELETE ON TABLES FROM test_user_4_role;
 -- Даём права на выполнения для ВСЕХ новых функций и процедур, которые будут созданы в схеме
-ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 GRANT EXECUTE ON FUNCTIONS TO test_user_4_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 GRANT EXECUTE ON FUNCTIONS TO test_user_4_role; -- ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 REVOKE EXECUTE ON FUNCTIONS FROM test_user_4_role;
 -- Даём права на выполнения для ВСЕХ новых последовательностей, которые будут созданы в схеме (нужно только для версий младше PostgreSQL 16)
-ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 GRANT SELECT, UPDATE ON SEQUENCES TO test_user_4_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 GRANT SELECT, UPDATE ON SEQUENCES TO test_user_4_role; -- ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 REVOKE SELECT, UPDATE ON SEQUENCES FROM test_user_4_role;
 
 CREATE TABLE user_4.t_users1 (
     id integer GENERATED ALWAYS AS IDENTITY NOT NULL primary key,
