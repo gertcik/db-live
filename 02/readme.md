@@ -109,6 +109,40 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA user_4 GRANT SELECT, UPDATE ON SEQUENCES TO t
 
 [Скрипт](script-4.sql)
 
+**Полезные запросы***
+
+```
+-- посмотреть права по-умолчанию (ALTER DEFAULT PRIVILEGES) для текущего пользователя 
+SELECT defaclrole::regrole AS creator,
+       defaclnamespace::regnamespace AS schema,
+       defaclobjtype AS object_type,
+       defaclacl AS default_permissions
+FROM pg_default_acl;
+```
+
+```
+-- посмотреть права по-умолчанию (ALTER DEFAULT PRIVILEGES) для текущего пользователя 
+SELECT defaclrole::regrole AS creator,
+       defaclnamespace::regnamespace AS schema,
+       defaclobjtype AS object_type,
+       defaclacl AS default_permissions
+FROM pg_default_acl;
+```
+
+```
+-- запускаем под пользователем test_user_4 и видим права для объектов схемы user_4
+select * from information_schema.role_table_grants where table_schema = 'user_4'
+```
+
+```
+-- запускаем под пользователем test_user_4 и видим права для процедур и функций схемы user_4
+select * from information_schema.role_routine_grants where specific_schema = 'user_4'
+```
+
+**Что почитать**:
+1. https://www.cybertec-postgresql.com/en/postgresql-alter-default-privileges-permissions-explained/
+2. https://www.sql-ex.ru/blogs/?/Osnovy_PostgreSQL_vladenie_obektami_i_privilegii_po_umolchaniju_.html
+
 # 3. Анализ того, что мы увидели
 
 # 3.1. Какую схему и когда выбирать
