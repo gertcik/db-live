@@ -90,7 +90,7 @@ docker stats
 ```
 
 Если возникают проблемы с Docker на windows, он не стартует.
-Видим вот такую диагностик, то можно попробовать удалить всё и создать заново
+Видим вот такую диагностику, то можно попробовать удалить всё и создать заново
 running engine: waiting for the VM setup to be ready: starting WSL engine: bootstrapping in the main distro: starting wsl-bootstrap: context canceled
 ```
 wsl --unregister docker-desktop
