@@ -1,4 +1,4 @@
--- полезные скрипт по соединениям в PostgreSQL
+-- полезные скрипты по соединениям в PostgreSQL
 -- вдохновялись информацией из
 -- https://edu.postgrespro.ru/16/dba1-16/dba1_12_admin_monitoring.html
 
